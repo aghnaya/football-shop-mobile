@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:football_shop/screens/product_form.dart'; 
+import 'package:football_shop/widgets/left_drawer.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
@@ -30,6 +32,7 @@ class MyHomePage extends StatelessWidget {
         // Warna latar belakang AppBar diambil dari skema warna tema aplikasi.
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
+      drawer: const LeftDrawer(),
       // Body halaman dengan padding di sekelilingnya.
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -140,7 +143,7 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Tentukan warna latar berdasarkan nama tombol
+    // Warna latar berdasarkan nama tombol
     Color backgroundColor;
     switch (item.name) {
       case "All Products":
@@ -165,13 +168,24 @@ class ItemCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!"),
+          if (item.name == "Create Product") {
+            // Navigasi ke halaman form
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProductFormPage(),
               ),
             );
+          } else {
+            // Untuk tombol lain, tetap menampilkan SnackBar
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text("Kamu telah menekan tombol ${item.name}!"),
+                ),
+              );
+          }
         },
         child: Container(
           padding: const EdgeInsets.all(8),

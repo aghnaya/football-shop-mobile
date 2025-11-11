@@ -18,3 +18,25 @@ Jawab: BuildContext menyimpan informasi posisi widget di dalam widget tree. Bias
 # 6.  Jelaskan konsep "hot reload" di Flutter dan bagaimana bedanya dengan "hot restart".
 Jawab: Hot reload memperbarui kode tanpa menghapus state aplikasi (cepat untuk lihat perubahan kecil).
 Hot restart memulai ulang seluruh aplikasi dari awal, jadi semua state hilang.
+
+###
+# Tugas 8 PBP
+
+1. Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement() pada Flutter. Dalam kasus apa sebaiknya masing-masing digunakan pada aplikasi Football Shop kamu?
+Jawab: 
+- Navigator.push() digunakan jika ingin berpindah ke halaman baru tanpa menghilangkan halaman sebelumnya. Jadi, pengguna masih bisa kembali ke halaman sebelumnya dengan tombol back. Pada aplikasi Football Shop ini, digunakan ketika pengguna menekan kartu “Create Product” dari halaman utama, pengguna bisa kembali ke halaman utama setelah selesai mengisi form.
+- Navigator.pushReplacement() digunakan jika ingin mengganti halaman saat ini dengan halaman yang baru, sehingga pengguna tidak akan kembali ke halaman sebelumnya. Di aplikasi ini, hal ini digunakan pada menu yang ada di Drawer. Misalnya, saat berpindah dari Drawer ke halaman utama. 
+
+2. Bagaimana kamu memanfaatkan hierarchy widget seperti Scaffold, AppBar, dan Drawer untuk membangun struktur halaman yang konsisten di seluruh aplikasi?
+Jawab:
+Pada aplikasi ini, Scaffold dimanfaatkan sebagai kerangka dasar untuk setiap halaman. Scaffold menyediakan struktur yang standar seperti area AppBar, Drawer, dan body. AppBar digunakan untuk menampilkan judul halaman yang konsisten di berbagai halaman. Drawer berfungsi sebagai menu samping agar pengguna dapat berpindah antar halaman dengan mudah.
+
+3. Dalam konteks desain antarmuka, apa kelebihan menggunakan layout widget seperti Padding, SingleChildScrollView, dan ListView saat menampilkan elemen-elemen form? Berikan contoh penggunaannya dari aplikasi kamu.
+Jawab:
+- Padding membantu memberikan ruang antar elemen sehingga tampilan tidak terasa sempit. 
+- SingleChildScrollView digunakan agar halaman dapat di-scroll ketika kontennya melebihi tinggi layar, terutama ketika keyboard muncul. 
+- ListView digunakan untuk menata elemen-elemen form secara vertikal dan responsif, tanpa harus mengatur satu per satu tinggi komponen.
+
+4. Bagaimana kamu menyesuaikan warna tema agar aplikasi Football Shop memiliki identitas visual yang konsisten dengan brand toko?
+Jawab:
+Untuk menjaga identitas yang konsisten, digunakan ThemeData dan ColorScheme. Dengan menentukan warna utama sebagai warna dasar dari Football Shop, dan diterapkan juga pada tombol-tombol yang ada. Dengan menyesuaikan ini, aplikasi terlihat konsisten.
