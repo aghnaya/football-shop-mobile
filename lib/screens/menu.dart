@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:football_shop/screens/product_form.dart'; 
+import 'package:football_shop/screens/product_form.dart';
+import 'package:football_shop/screens/product_list.dart';
 import 'package:football_shop/widgets/left_drawer.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -9,10 +10,10 @@ class MyHomePage extends StatelessWidget {
   final String npm = "2406436410"; //npm
   final String kelas = "A"; //kelas
   
-  final List<ItemHomepage> items = [
+    final List<ItemHomepage> items = [
     ItemHomepage("All Products", Icons.newspaper),
-    ItemHomepage("My Products", Icons.add),
-    ItemHomepage("Create Product", Icons.logout),
+    ItemHomepage("My Products", Icons.person),
+    ItemHomepage("Create Product", Icons.add_box),
   ];
 
   @override
@@ -72,7 +73,7 @@ class MyHomePage extends StatelessWidget {
                   ),
 
                   // Grid untuk menampilkan ItemCard dalam bentuk grid 3 kolom.
-                  GridView.count(
+                      GridView.count(
                     primary: true,
                     padding: const EdgeInsets.all(20),
                     crossAxisSpacing: 10,
@@ -165,26 +166,30 @@ class ItemCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       elevation: 4,
-      child: InkWell(
+        child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: () {
           if (item.name == "Create Product") {
-            // Navigasi ke halaman form
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const ProductFormPage(),
               ),
             );
+          } else if (item.name == "All Products") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProductListPage()),
+            );
+          } else if (item.name == "My Products") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProductListPage(onlyMine: true)),
+            );
           } else {
-            // Untuk tombol lain, tetap menampilkan SnackBar
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: Text("Kamu telah menekan tombol ${item.name}!"),
-                ),
-              );
+              ..showSnackBar(SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!")));
           }
         },
         child: Container(
